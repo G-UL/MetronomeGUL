@@ -116,18 +116,19 @@
 
 .modern-metronome__settings
 {
-	display: grid;
+	display: flex;
+	flex-direction: column;
 	gap: 16px;
-	grid-template-columns: repeat(2, 1fr);
 	margin-top: 30px;
 }
 
 
-.modern-metronome__settings div
+.modern-metronome__settings > div
 {
 	background: #1F252A;
 	border-radius: 20px;
 	padding: 22px;
+	width: 100%;
 }
 
 
@@ -168,3 +169,47 @@
 		grid-template-columns: 1fr;
 	}
 }
+
+
+.modern-metronome__setting-control
+{
+	align-items: center;
+	display: flex;
+	gap: 16px;
+	justify-content: center;
+	margin-top: 16px;
+}
+
+
+.modern-metronome__setting-control button
+{
+	align-items: center;
+	background: #252C32;
+	border: 0;
+	border-radius: 12px;
+	color: #fa5e46;
+	display: flex;
+	font-size: 18px;
+	height: 42px;
+	justify-content: center;
+	width: 42px;
+}
+
+
+.modern-metronome__setting-control strong
+{
+	color: #FA5E46;
+	font-size: 34px;
+	font-weight: 700;
+	min-width: 120px;
+	text-align: center;
+}
+
+
+.modern-metronome button:disabled,
+.modern-metronome input:disabled
+{
+	cursor: not-allowed;
+	opacity: 0.5;
+}
+
