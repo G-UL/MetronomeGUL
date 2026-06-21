@@ -1,0 +1,23 @@
+export const STOPWATCH_LIMIT_SECONDS = 99 * 60 + 59;
+export const SUBDIVISIONS = ["Quarter",
+							 "Eighth",
+							 "Triplet",
+							 "Sixteenth",
+							 "Quintuplet",
+							 "Sextuplet",
+							 "Septuplet",
+							 "Octuplet",
+							 "Nonuplet"];
+export const TIME_SIGNATURES = ["1/4",
+								"2/4",
+								"3/4",
+								"4/4",
+								"5/4",
+								"6/4",
+								"7/4",
+								"3/8",
+								"5/8",
+								"6/8",
+								"7/8",
+								"9/8",
+								"12/8"];

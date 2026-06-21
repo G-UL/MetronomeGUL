@@ -4,31 +4,11 @@ import {useEffect,
 
 // Projects
 import "./ClassicMetronome.css";
+import {STOPWATCH_LIMIT_SECONDS,
+		SUBDIVISIONS,
+		TIME_SIGNATURES} from "../../constants";
+import useWakeLock from "../../../../hooks/useWakeLock";
 
-
-const STOPWATCH_LIMIT_SECONDS = 99 * 60 + 59;
-const SUBDIVISIONS = ["Quarter",
-					  "Eighth",
-					  "Triplet",
-					  "Sixteenth",
-					  "Quintuplet",
-					  "Sextuplet",
-					  "Septuplet",
-					  "Octuplet",
-					  "Nonuplet"];
-const TIME_SIGNATURES = ["1/4",
-						 "2/4",
-						 "3/4",
-						 "4/4",
-						 "5/4",
-						 "6/4",
-						 "7/4",
-						 "3/8",
-						 "5/8",
-						 "6/8",
-						 "7/8",
-						 "9/8",
-						 "12/8"];
 
 function
 ClassicMetronome()
@@ -46,6 +26,9 @@ ClassicMetronome()
 							  String(stopwatchSeconds).padStart(2,
 																"0")].join(":");
 	const subdivision = SUBDIVISIONS[subdivisionIndex];
+
+
+	useWakeLock(isPlaying);
 
 
 	const resetStopwatch = () => {
