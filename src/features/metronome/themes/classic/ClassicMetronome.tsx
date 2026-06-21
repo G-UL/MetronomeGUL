@@ -43,6 +43,7 @@ ClassicMetronome()
 
 					<div className="classic-metronome__control-row">
 						<button className="classic-metronome__round-button"
+								disabled={isPlaying}
 								onClick={
 									() => {
 										setBpm((current) => Math.max(20, current - 1));
@@ -54,13 +55,15 @@ ClassicMetronome()
 							</i>
 						</button>
 
-						<input max="300"
+						<input disabled={isPlaying}
+							   max="300"
 							   min="20"
 							   onChange={(event) => setBpm(Number(event.target.value))}
 							   type="range"
 							   value={bpm} />
 
 						<button className="classic-metronome__round-button"
+								disabled={isPlaying}
 								onClick={
 									() => {
 										setBpm((current) => Math.min(300, current + 1));
@@ -98,6 +101,7 @@ ClassicMetronome()
 
 							<div className="classic-metronome__mini-control-row">
 								<button className="classic-metronome__round-button"
+										disabled={isPlaying}
 										onClick={
 											() => {
 												setTimeSignatureIndex(
@@ -114,6 +118,7 @@ ClassicMetronome()
 								</button>
 
 								<button className="classic-metronome__round-button"
+										disabled={isPlaying}
 										onClick={
 											() => {
 												setTimeSignatureIndex(
@@ -142,6 +147,7 @@ ClassicMetronome()
 
 							<div className="classic-metronome__mini-control-row">
 								<button className="classic-metronome__round-button"
+										disabled={isPlaying}
 										onClick={
 											() => {
 												setSubdivisionIndex(
@@ -158,6 +164,7 @@ ClassicMetronome()
 								</button>
 
 								<button className="classic-metronome__round-button"
+										disabled={isPlaying}
 										onClick={
 											() => {
 												setSubdivisionIndex(

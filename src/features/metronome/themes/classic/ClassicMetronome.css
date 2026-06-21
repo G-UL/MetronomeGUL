@@ -4,6 +4,14 @@
 }
 
 
+.classic-metronome button:disabled,
+.classic-metronome input:disabled
+{
+	cursor: not-allowed;
+	opacity: 0.6;
+}
+
+
 .classic-metronome__panel
 {
 	background: #F5F5F5;
