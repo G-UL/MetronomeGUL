@@ -1,58 +1,161 @@
+// React
+import {useState} from "react";
+
 // Projects
 import "./ClassicMetronome.css";
 
 
+const TIME_SIGNATURES = ["1/4",
+						 "2/4",
+						 "3/4",
+						 "4/4",
+						 "5/4",
+						 "6/4",
+						 "7/4",
+						 "3/8",
+						 "5/8",
+						 "6/8",
+						 "7/8",
+						 "9/8",
+						 "12/8"];
+const SUBDIVISIONS = ["Quarter",
+					  "Eighth",
+					  "Triplet",
+					  "Sixteenth",
+					  "Quintuplet",
+					  "Sextuplet",
+					  "Septuplet",
+					  "Octuplet",
+					  "Nonuplet"];
+
 function
 ClassicMetronome()
 {
+	const [bpm, setBpm] = useState(60);
+	const [isPlaying, setIsPlaying] = useState(false);
+	const [subdivisionIndex, setSubdivisionIndex] = useState(0);
+	const [timeSignatureIndex, setTimeSignatureIndex] = useState(3);
+	const timeSignature = TIME_SIGNATURES[timeSignatureIndex];
+	const subdivision = SUBDIVISIONS[subdivisionIndex];
+
 	return (
 		<section className="classic-metronome">
 			<div className="container">
 				<div className="classic-metronome__panel card">
-					<h2 className="classic-metronome__number">60</h2>
+					<h2 className="classic-metronome__number">{bpm}</h2>
 
 					<h4 className="classic-metronome__reference">bpm</h4>
 
 					<div className="classic-metronome__control-row">
-						<button className="classic-metronome__round-button">
+						<button className="classic-metronome__round-button"
+								onClick={() => setBpm((current) => Math.max(20, current - 1))}>
 							<i className="bi
-										  bi-dash">
+										  bi-dash-lg">
 							</i>
 						</button>
 
 						<input max="300"
 							   min="20"
-							   readOnly
+							   onChange={(event) => setBpm(Number(event.target.value))}
 							   type="range"
-							   value="60" />
+							   value={bpm} />
 
-						<button className="classic-metronome__round-button">
+						<button className="classic-metronome__round-button"
+								onClick={() => setBpm((current) => Math.min(300, current + 1))}>
 							<i className="bi
-										  bi-plus">
+										  bi-plus-lg">
 							</i>
 						</button>
 					</div>
 
-					<button className="classic-metronome__play-button">
-						<i className="bi
-									  bi-play-fill">
-						</i>
-					</button>
+					<div className="classic-metronome__play-row">
+						<button className="classic-metronome__play-button"
+								onClick={() => setIsPlaying((current) => !current)}>
+							<i className={isPlaying ?
+										  "bi bi-pause-fill" :
+										  "bi bi-play-fill"}>
+							</i>
+						</button>
 
-					<div className="classic-metronome__stopwatch">00:00</div>
+						<div className="classic-metronome__stopwatch">00:00</div>
+					</div>
 
 					<div className="row
 									classic-metronome__settings">
 						<div className="col-md-6">
-							<h2 className="classic-metronome__number">4/4</h2>
+							<h2 className="classic-metronome__number">
+								{timeSignature}
+							</h2>
 
-							<h4 className="classic-metronome__reference">time signature</h4>
+							<h4 className="classic-metronome__reference">
+								time signature
+							</h4>
+
+							<div className="classic-metronome__mini-control-row">
+								<button className="classic-metronome__round-button"
+										onClick={
+											() => setTimeSignatureIndex(
+												(current) => current === 0 ?
+															 TIME_SIGNATURES.length - 1 :
+															 current - 1
+											)
+										}>
+									<i className="bi
+												  bi-dash-lg">
+									</i>
+								</button>
+
+								<button className="classic-metronome__round-button"
+										onClick={
+											() => setTimeSignatureIndex(
+												(current) => current === TIME_SIGNATURES.length - 1 ?
+															 0 :
+															 current + 1
+											)
+										}>
+									<i className="bi
+												  bi-plus-lg">
+									</i>
+								</button>
+							</div>
 						</div>
 
 						<div className="col-md-6">
-							<h2 className="classic-metronome__number">Quarter</h2>
+							<h2 className="classic-metronome__value-text">
+								{subdivision}
+							</h2>
 
-							<h4 className="classic-metronome__reference">subdivision</h4>
+							<h4 className="classic-metronome__reference">
+								subdivision
+							</h4>
+
+							<div className="classic-metronome__mini-control-row">
+								<button className="classic-metronome__round-button"
+										onClick={
+											() => setSubdivisionIndex(
+												(current) => current === 0 ?
+															 SUBDIVISIONS.length - 1 :
+															 current - 1
+											)
+										}>
+									<i className="bi
+												  bi-dash-lg">
+									</i>
+								</button>
+
+								<button className="classic-metronome__round-button"
+										onClick={
+											() => setSubdivisionIndex(
+												(current) => current === SUBDIVISIONS.length - 1 ?
+															 0 :
+															 current + 1
+											)
+										}>
+									<i className="bi
+												  bi-plus-lg">
+									</i>
+								</button>
+							</div>
 						</div>
 					</div>
 				</div>

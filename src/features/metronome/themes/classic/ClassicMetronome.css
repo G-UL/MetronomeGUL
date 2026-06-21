@@ -43,9 +43,81 @@
 }
 
 
+.classic-metronome__value-text
+{
+	color: #FA5E46;
+	font-size: 42px;
+	font-weight: 900;
+	margin-bottom: 0;
+}
+
+
 .classic-metronome__control-row input[type="range"]
 {
 	width: 40%;
+}
+
+
+.classic-metronome input[type="range"]
+{
+	-webkit-appearance: none;
+	appearance: none;
+	margin: 13px 0;
+	width: 40%;
+}
+
+
+.classic-metronome input[type="range"]:focus
+{
+	outline: none;
+}
+
+
+.classic-metronome input[type="range"]::-webkit-slider-runnable-track
+{
+	background: #928483;
+	border: 1px solid #562425;
+	border-radius: 6px;
+	box-shadow: 1px 1px 1px #000000, 0 0 1px #0d0d0d;
+	cursor: pointer;
+	height: 12px;
+}
+
+
+.classic-metronome input[type="range"]::-webkit-slider-thumb
+{
+	-webkit-appearance: none;
+	background: #6B1817;
+	border: 2px solid #000000;
+	border-radius: 2px;
+	box-shadow: 1px 1px 1px #050000, 0 0 1px #1F0000;
+	cursor: pointer;
+	height: 39px;
+	margin-top: -14px;
+	width: 19px;
+}
+
+
+.classic-metronome input[type="range"]::-moz-range-track
+{
+	background: #928483;
+	border: 1px solid #562425;
+	border-radius: 6px;
+	box-shadow: 1px 1px 1px #000000, 0 0 1px #0D0D0D;
+	cursor: pointer;
+	height: 12px;
+}
+
+
+.classic-metronome input[type="range"]::-moz-range-thumb
+{
+	background: #6B1817;
+	border: 2px solid #000000;
+	border-radius: 2px;
+	box-shadow: 1px 1px 1px #050000, 0 0 1px #1F0000;
+	cursor: pointer;
+	height: 39px;
+	width: 19px;
 }
 
 
