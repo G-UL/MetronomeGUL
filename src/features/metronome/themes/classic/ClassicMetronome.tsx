@@ -1,12 +1,12 @@
 // React
-import {useEffect,
-		useState} from "react";
+import {useState} from "react";
 
 // Projects
 import "./ClassicMetronome.css";
-import {STOPWATCH_LIMIT_SECONDS,
-		SUBDIVISIONS,
+import {SUBDIVISIONS,
 		TIME_SIGNATURES} from "../../constants";
+import useMetronomeAudio from "../../hooks/useMetronomeAudio";
+import useStopwatch from "../../hooks/useStopwatch";
 import useWakeLock from "../../../../hooks/useWakeLock";
 
 
@@ -15,53 +15,22 @@ ClassicMetronome()
 {
 	const [bpm, setBpm] = useState(60);
 	const [isPlaying, setIsPlaying] = useState(false);
-	const [secondsElapsed, setSecondsElapsed] = useState(0);
 	const [subdivisionIndex, setSubdivisionIndex] = useState(0);
 	const [timeSignatureIndex, setTimeSignatureIndex] = useState(3);
 	const timeSignature = TIME_SIGNATURES[timeSignatureIndex];
-	const stopwatchMinutes = Math.floor(secondsElapsed / 60);
-	const stopwatchSeconds = secondsElapsed % 60;
-	const stopwatchDisplay = [String(stopwatchMinutes).padStart(2,
-																"0"),
-							  String(stopwatchSeconds).padStart(2,
-																"0")].join(":");
 	const subdivision = SUBDIVISIONS[subdivisionIndex];
 
 
+	const {resetStopwatch,
+		   stopwatchDisplay} = useStopwatch(isPlaying,
+											() => setIsPlaying(false));
+
+
 	useWakeLock(isPlaying);
-
-
-	const resetStopwatch = () => {
-		setSecondsElapsed(0);
-	};
-
-
-	useEffect(
-		() => {
-			if (!isPlaying) return ;
-
-			const timerId = window.setInterval(
-				() => {
-					setSecondsElapsed(
-						(current) => {
-							if (current >= STOPWATCH_LIMIT_SECONDS)
-							{
-								setIsPlaying(false);
-
-								return 0;
-							}
-
-							return current + 1;
-						}
-					);
-				}, 
-				1000
-			);
-
-			return () => window.clearInterval(timerId);
-		},
-		[isPlaying]
-	);
+	useMetronomeAudio({bpm,
+					   isPlaying,
+					   subdivisionIndex,
+					   timeSignature});
 
 
 	return (
