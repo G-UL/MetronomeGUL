@@ -1,42 +1,170 @@
-.metronome-page
+.modern-metronome
 {
 	margin-top: 24px;
 }
 
 
-.metronome-page__toolbar
+.modern-metronome__panel
 {
-	align-items: center;
-	display: flex;
-	gap: 10px;
-	justify-content: center;
-	margin-bottom: 12px;
+	background: #11161A;
+	border-radius: 32px;
+	color: white;
+	margin: 0 auto;
+	max-width: 560px;
+	padding: 42px 32px;
+	text-align: center;
 }
 
 
-.theme-toggle
+.modern-metronome__tempo span
+{
+	color: #9CA3AF;
+	display: block;
+	font-size: 14px;
+	font-weight: 700;
+	letter-spacing: 2px;
+	text-transform: uppercase;
+}
+
+
+.modern-metronome__tempo strong
+{
+	color: #FA5E46;
+	display: block;
+	font-size: 120px;
+	font-weight: 900;
+	line-height: 0.9;
+	margin: 14px 0;
+}
+
+
+.modern-metronome__beats
+{
+	display: flex;
+	gap: 12px;
+	justify-content: center;
+	margin: 30px 0;
+}
+
+
+.modern-metronome__beat
+{
+	background: #374151;
+	border-radius: 50%;
+	height: 14px;
+	width: 14px;
+}
+
+
+.modern-metronome__beat--active
 {
 	background: #FA5E46;
+	box-shadow: 0 0 16px rgba(250, 94, 70, 0.8);
+}
+
+
+.modern-metronome__play
+{
+	align-items: center;
+	background: #FA5E46;
 	border: 0;
-	border-radius: 999px;
-	height: 26px;
-	padding: 3px;
+	border-radius: 50%;
+	color: white;
+	display: inline-flex;
+	font-size: 46px;
+	height: 104px;
+	justify-content: center;
+	width: 104px;
+}
+
+
+.modern-metronome__timer
+{
+	font-size: 28px;
+	font-weight: 800;
+	margin: 18px 0 30px;
+}
+
+
+.modern-metronome__bpm-control
+{
+	align-items: center;
+	display: flex;
+	gap: 16px;
+	justify-content: center;
+}
+
+
+.modern-metronome__bpm-control button
+{
+	background: #252C32;
+	border: 0;
+	border-radius: 14px;
+	color: #fa5e46;
+	font-size: 30px;
+	font-weight: 800;
+	height: 52px;
 	width: 52px;
 }
 
 
-.theme-toggle span
+.modern-metronome__bpm-control input
 {
-	background: white;
-	border-radius: 50%;
-	display: block;
-	height: 20px;
-	transition: transform 0.2s ease;
-	width: 20px;
+	width: 55%;
 }
 
 
-.theme-toggle--modern span
+.modern-metronome__settings
 {
-	transform: translateX(26px);
+	display: grid;
+	gap: 16px;
+	grid-template-columns: repeat(2, 1fr);
+	margin-top: 30px;
+}
+
+
+.modern-metronome__settings div
+{
+	background: #1F252A;
+	border-radius: 20px;
+	padding: 22px;
+}
+
+
+.modern-metronome__settings span
+{
+	color: #9CA3AF;
+	display: block;
+	font-size: 13px;
+	font-weight: 700;
+	text-transform: uppercase;
+}
+
+
+.modern-metronome__settings strong
+{
+	color: #FA5E46;
+	display: block;
+	font-size: 34px;
+	margin-top: 8px;
+}
+
+
+@media (max-width: 768px)
+{
+	.modern-metronome__panel
+	{
+		border-radius: 24px;
+		padding: 34px 22px;
+	}
+
+	.modern-metronome__tempo strong
+	{
+		font-size: 92px;
+	}
+
+	.modern-metronome__settings
+	{
+		grid-template-columns: 1fr;
+	}
 }

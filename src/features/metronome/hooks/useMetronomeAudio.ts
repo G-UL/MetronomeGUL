@@ -79,7 +79,10 @@ useMetronomeAudio({bpm,
 				countRef.current = 0;
 			};
 		},
-		[bpm, isPlaying, timeSignature, subdivisionIndex]
+		[bpm,
+		 isPlaying,
+		 subdivisionIndex,
+		 timeSignature]
 	);
 }
 

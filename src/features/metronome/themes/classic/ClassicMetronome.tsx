@@ -1,75 +1,47 @@
-// React
-import {useState} from "react";
-
 // Projects
 import "./ClassicMetronome.css";
-import {SUBDIVISIONS,
-		TIME_SIGNATURES} from "../../constants";
-import useMetronomeAudio from "../../hooks/useMetronomeAudio";
-import useStopwatch from "../../hooks/useStopwatch";
-import useWakeLock from "../../../../hooks/useWakeLock";
+import type {MetronomeState} from "../../types";
+
+
+type ClassicMetronomeProps = {metronome: MetronomeState};
 
 
 function
-ClassicMetronome()
+ClassicMetronome({metronome}: ClassicMetronomeProps)
 {
-	const [bpm, setBpm] = useState(60);
-	const [isPlaying, setIsPlaying] = useState(false);
-	const [subdivisionIndex, setSubdivisionIndex] = useState(0);
-	const [timeSignatureIndex, setTimeSignatureIndex] = useState(3);
-	const timeSignature = TIME_SIGNATURES[timeSignatureIndex];
-	const subdivision = SUBDIVISIONS[subdivisionIndex];
-
-
-	const {resetStopwatch,
-		   stopwatchDisplay} = useStopwatch(isPlaying,
-											() => setIsPlaying(false));
-
-
-	useWakeLock(isPlaying);
-	useMetronomeAudio({bpm,
-					   isPlaying,
-					   subdivisionIndex,
-					   timeSignature});
-
-
 	return (
 		<section className="classic-metronome">
 			<div className="container">
 				<div className="classic-metronome__panel card">
-					<h2 className="classic-metronome__number">{bpm}</h2>
+					<h2 className="classic-metronome__number">
+						{metronome.bpm}
+					</h2>
 
 					<h4 className="classic-metronome__reference">bpm</h4>
 
 					<div className="classic-metronome__control-row">
 						<button className="classic-metronome__round-button"
-								disabled={isPlaying}
-								onClick={
-									() => {
-										setBpm((current) => Math.max(20, current - 1));
-										resetStopwatch();
-									}
-								}>
+								disabled={metronome.isPlaying}
+								onClick={metronome.decreaseBpm}>
 							<i className="bi
 										  bi-dash-lg">
 							</i>
 						</button>
 
-						<input disabled={isPlaying}
+						<input disabled={metronome.isPlaying}
 							   max="300"
 							   min="20"
-							   onChange={(event) => setBpm(Number(event.target.value))}
+							   onChange={
+								   (event) => metronome.setBpmValue(
+									   Number(event.target.value)
+								   )
+							   }
 							   type="range"
-							   value={bpm} />
+							   value={metronome.bpm} />
 
 						<button className="classic-metronome__round-button"
-								disabled={isPlaying}
-								onClick={
-									() => {
-										setBpm((current) => Math.min(300, current + 1));
-										resetStopwatch();
-									}
-								}>
+								disabled={metronome.isPlaying}
+								onClick={metronome.increaseBpm}>
 							<i className="bi
 										  bi-plus-lg">
 							</i>
@@ -78,21 +50,25 @@ ClassicMetronome()
 
 					<div className="classic-metronome__play-row">
 						<button className="classic-metronome__play-button"
-								onClick={() => setIsPlaying((current) => !current)}>
-							<i className={isPlaying ?
-										  "bi bi-pause-fill" :
-										  "bi bi-play-fill"}>
+								onClick={metronome.togglePlaying}>
+							<i className={
+								metronome.isPlaying ?
+									"bi bi-pause-fill" :
+									"bi bi-play-fill"
+							}>
 							</i>
 						</button>
 
-						<div className="classic-metronome__stopwatch">{stopwatchDisplay}</div>
+						<div className="classic-metronome__stopwatch">
+							{metronome.stopwatchDisplay}
+						</div>
 					</div>
 
 					<div className="row
 									classic-metronome__settings">
 						<div className="col-md-6">
 							<h2 className="classic-metronome__number">
-								{timeSignature}
+								{metronome.timeSignature}
 							</h2>
 
 							<h4 className="classic-metronome__reference">
@@ -101,34 +77,16 @@ ClassicMetronome()
 
 							<div className="classic-metronome__mini-control-row">
 								<button className="classic-metronome__round-button"
-										disabled={isPlaying}
-										onClick={
-											() => {
-												setTimeSignatureIndex(
-													(current) => current === 0 ?
-																 TIME_SIGNATURES.length - 1 :
-																 current - 1
-												);
-												resetStopwatch();
-											}
-										}>
+										disabled={metronome.isPlaying}
+										onClick={metronome.previousTimeSignature}>
 									<i className="bi
 												  bi-dash-lg">
 									</i>
 								</button>
 
 								<button className="classic-metronome__round-button"
-										disabled={isPlaying}
-										onClick={
-											() => {
-												setTimeSignatureIndex(
-													(current) => current === TIME_SIGNATURES.length - 1 ?
-																 0 :
-																 current + 1
-												);
-												resetStopwatch();
-											}
-										}>
+										disabled={metronome.isPlaying}
+										onClick={metronome.nextTimeSignature}>
 									<i className="bi
 												  bi-plus-lg">
 									</i>
@@ -138,7 +96,7 @@ ClassicMetronome()
 
 						<div className="col-md-6">
 							<h2 className="classic-metronome__value-text">
-								{subdivision}
+								{metronome.subdivision}
 							</h2>
 
 							<h4 className="classic-metronome__reference">
@@ -147,34 +105,16 @@ ClassicMetronome()
 
 							<div className="classic-metronome__mini-control-row">
 								<button className="classic-metronome__round-button"
-										disabled={isPlaying}
-										onClick={
-											() => {
-												setSubdivisionIndex(
-													(current) => current === 0 ?
-																 SUBDIVISIONS.length - 1 :
-																 current - 1
-												);
-												resetStopwatch();
-											}
-										}>
+										disabled={metronome.isPlaying}
+										onClick={metronome.previousSubdivision}>
 									<i className="bi
 												  bi-dash-lg">
 									</i>
 								</button>
 
 								<button className="classic-metronome__round-button"
-										disabled={isPlaying}
-										onClick={
-											() => {
-												setSubdivisionIndex(
-													(current) => current === SUBDIVISIONS.length - 1 ?
-																 0 :
-																 current + 1
-												);
-												resetStopwatch();
-											}
-										}>
+										disabled={metronome.isPlaying}
+										onClick={metronome.nextSubdivision}>
 									<i className="bi
 												  bi-plus-lg">
 									</i>

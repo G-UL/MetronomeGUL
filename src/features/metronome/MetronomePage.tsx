@@ -4,6 +4,7 @@ import {useState} from "react";
 // Projects
 import ClassicMetronome from "./themes/classic/ClassicMetronome";
 import ModernMetronome from "./themes/modern/ModernMetronome";
+import useMetronomeState from "./hooks/useMetronomeState";
 import "./MetronomePage.css";
 
 
@@ -11,6 +12,7 @@ function
 MetronomePage()
 {
 	const [theme, setTheme] = useState<"classic" | "modern">("classic");
+	const metronome = useMetronomeState();
 
 
 	return (
@@ -22,6 +24,7 @@ MetronomePage()
 									${theme === "modern" ?
 									"theme-toggle--modern" :
 									""}`}
+						disabled={metronome.isPlaying}
 						onClick={
 							() => setTheme(
 								(current) => current === "classic" ?
@@ -37,8 +40,8 @@ MetronomePage()
 
 			{
 				theme === "classic" ?
-				<ClassicMetronome /> :
-				<ModernMetronome />
+				<ClassicMetronome metronome={metronome} /> :
+				<ModernMetronome metronome={metronome} />
 			}
 		</main>
 	);
