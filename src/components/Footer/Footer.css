@@ -1,8 +1,8 @@
 .site-footer
 {
-	color: #777;
-	font-size: 14px;
-	margin-top: 40px;
-	padding: 20px 16px;
+	background: #FBFBFD;
+	border-top: 1px solid #F5F5F5;
+	margin-top: auto;
+	padding: 25px 0;
 	text-align: center;
 }

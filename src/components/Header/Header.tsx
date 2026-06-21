@@ -1,4 +1,5 @@
 // Projects
+import logo from "../../assets/images/G-UL-Logo-Big.png";
 import "./Header.css";
 
 
@@ -9,7 +10,11 @@ Header()
 		<nav className="site-header">
 			<a className="site-header__brand"
 			   href="/">
-				G&apos;s Metronome
+				<img alt="G-UL logo"
+					 className="site-header__logo"
+					 src={logo} />
+
+				<span>G&apos;s Metronome</span>
 			</a>
 		</nav>
 	);

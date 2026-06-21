@@ -8,8 +8,20 @@
 
 .site-header__brand
 {
-	color: #232C32;
+	align-items: center;
+	color: red;
+	display: inline-flex;
+	flex-direction: column;
 	font-size: 24px;
 	font-weight: 700;
+	line-height: 1.1;
 	text-decoration: none;
+}
+
+
+.site-header__logo
+{
+	height: 42px;
+	margin-bottom: 4px;
+	width: auto;
 }
