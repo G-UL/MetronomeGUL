@@ -1,0 +1,42 @@
+.metronome-page
+{
+	margin-top: 24px;
+}
+
+
+.metronome-page__toolbar
+{
+	align-items: center;
+	display: flex;
+	gap: 10px;
+	justify-content: center;
+	margin-bottom: 12px;
+}
+
+
+.theme-toggle
+{
+	background: #FA5E46;
+	border: 0;
+	border-radius: 999px;
+	height: 26px;
+	padding: 3px;
+	width: 52px;
+}
+
+
+.theme-toggle span
+{
+	background: white;
+	border-radius: 50%;
+	display: block;
+	height: 20px;
+	transition: transform 0.2s ease;
+	width: 20px;
+}
+
+
+.theme-toggle--modern span
+{
+	transform: translateX(26px);
+}
