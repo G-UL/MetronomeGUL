@@ -19,12 +19,19 @@ ModernMetronome({metronome}: ModernMetronomeProps)
 					</div>
 
 					<div className="modern-metronome__beats">
-						<span className="modern-metronome__beat
-										 modern-metronome__beat--active">
-						</span>
-						<span className="modern-metronome__beat"></span>
-						<span className="modern-metronome__beat"></span>
-						<span className="modern-metronome__beat"></span>
+						{
+							Array.from({length: metronome.beatCount}).map(
+								(_, index) => (
+									<span className={index === metronome.currentBeat ?
+													 index === 0 ?
+													 "modern-metronome__beat modern-metronome__beat--downbeat" :
+													 "modern-metronome__beat modern-metronome__beat--active" :
+													 "modern-metronome__beat"}
+										  key={index}>
+									</span>
+								)
+							)
+						}
 					</div>
 
 					<button className="modern-metronome__play"

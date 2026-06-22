@@ -1,17 +1,19 @@
 export type MetronomeState = {
+	beatCount: number;
 	bpm: number;
+	currentBeat: number;
 	isPlaying: boolean;
 	stopwatchDisplay: string;
 	subdivision: string;
-	timeSignature: string;
 	subdivisionIndex: number;
+	timeSignature: string;
 	timeSignatureIndex: number;
 	decreaseBpm: () => void;
 	increaseBpm: () => void;
-	setBpmValue: (value: number) => void;
-	previousSubdivision: () => void;
 	nextSubdivision: () => void;
-	previousTimeSignature: () => void;
 	nextTimeSignature: () => void;
+	previousSubdivision: () => void;
+	previousTimeSignature: () => void;
+	setBpmValue: (value: number) => void;
 	togglePlaying: () => void;
 };

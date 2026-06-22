@@ -1,5 +1,6 @@
 // React
-import {useState} from "react";
+import {useCallback,
+		useState} from "react";
 
 // Projects
 import useWakeLock from "../../../hooks/useWakeLock";
@@ -11,19 +12,33 @@ import useStopwatch from "./useStopwatch";
 
 
 function
+getBeatCount(timeSignature: string)
+{
+	return Number(timeSignature.split("/")[0]);
+}
+
+
+function
 useMetronomeState(): MetronomeState
 {
 	const [bpm, setBpm] = useState(60);
+	const [currentBeat, setCurrentBeat] = useState(0);
 	const [isPlaying, setIsPlaying] = useState(false);
 	const [subdivisionIndex, setSubdivisionIndex] = useState(0);
 	const [timeSignatureIndex, setTimeSignatureIndex] = useState(3);
-
+	const handleStopwatchLimit = useCallback(
+		() => {
+			setIsPlaying(false);
+		},
+		[]
+	);
 	const subdivision = SUBDIVISIONS[subdivisionIndex];
 	const timeSignature = TIME_SIGNATURES[timeSignatureIndex];
+	const beatCount = getBeatCount(timeSignature);
 
 	const {resetStopwatch, stopwatchDisplay} = useStopwatch(
 		isPlaying,
-		() => setIsPlaying(false)
+		handleStopwatchLimit
 	);
 
 
@@ -32,6 +47,7 @@ useMetronomeState(): MetronomeState
 
 	useMetronomeAudio({bpm,
 					   isPlaying,
+					   onBeatChange: setCurrentBeat,
 					   subdivisionIndex,
 					   timeSignature});
 
@@ -43,7 +59,9 @@ useMetronomeState(): MetronomeState
 
 
 	return {
+		beatCount,
 		bpm,
+		currentBeat,
 		isPlaying,
 		stopwatchDisplay,
 		subdivision,

@@ -51,15 +51,23 @@
 {
 	background: #374151;
 	border-radius: 50%;
-	height: 14px;
-	width: 14px;
+	height: 12px;
+	width: 12px;
 }
 
 
 .modern-metronome__beat--active
 {
 	background: #FA5E46;
-	box-shadow: 0 0 16px rgba(250, 94, 70, 0.8);
+	box-shadow: 0 0 10px rgba(250, 94, 70, 0.6);
+}
+
+
+.modern-metronome__beat--downbeat
+{
+	background: #FA5E46;
+	box-shadow: 0 0 20px rgba(250, 94, 70, 0.8);
+	transform: scale(1.35);
 }
 
 

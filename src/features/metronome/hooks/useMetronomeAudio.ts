@@ -10,6 +10,7 @@ import subAccentSound from "../../../assets/sounds/Runner.flac";
 
 type UseMetronomeAudioProps = {bpm: number;
 							   isPlaying: boolean;
+							   onBeatChange: (beat: number) => void;
 							   subdivisionIndex: number;
 							   timeSignature: string};
 
@@ -24,6 +25,7 @@ getBeatCount(timeSignature: string)
 function
 useMetronomeAudio({bpm,
 				   isPlaying,
+				   onBeatChange,
 				   subdivisionIndex,
 				   timeSignature}: UseMetronomeAudioProps)
 {
@@ -35,6 +37,7 @@ useMetronomeAudio({bpm,
 			if (!isPlaying)
 			{
 				countRef.current = 0;
+				onBeatChange(0);
 
 				return;
 			}
@@ -50,6 +53,8 @@ useMetronomeAudio({bpm,
 
 			const playSound = () => {
 				const currentCount = countRef.current;
+				const currentBeat = Math.floor(currentCount / subdivision);
+				onBeatChange(currentBeat);
 				if (currentCount === 0)
 				{
 					accent.currentTime = 0;
@@ -81,6 +86,7 @@ useMetronomeAudio({bpm,
 		},
 		[bpm,
 		 isPlaying,
+		 onBeatChange,
 		 subdivisionIndex,
 		 timeSignature]
 	);

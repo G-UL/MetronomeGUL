@@ -1,73 +1,85 @@
-# React + TypeScript + Vite
+# G's Metronome
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Modern React 19 + TypeScript implementation of the original G's Metronome application.
 
-Currently, two official plugins are available:
+## Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- BPM control (20-300 BPM)
+- Time signature support
+	- 1/4
+	- 2/4
+	- 3/4
+	- 4/4
+	- 5/4
+	- 6/4
+	- 7/4
+	- 3/8
+	- 5/8
+	- 6/8
+	- 7/8
+	- 9/8
+	- 12/8
+- Subdivision support
+	- Quarter
+	- Eighth
+	- Triplet
+	- Sixteenth
+	- Quintuplet
+	- Sextuplet
+	- Septuplet
+	- Octuplet
+	- Nonuplet
+- Audio playback
+- Accent beat support
+- Stopwatch
+- Automatic stop at 99:59
+- Wake Lock support (prevent device screen from sleeping)
+- Beat visualization
+- Classic theme
+- Modern theme
 
-## React Compiler
+## Technology Stack
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- React 19
+- TypeScript
+- Vite
+- Bootstrap 5
+- Bootstrap Icons
 
-## Expanding the ESLint configuration
+## Project Structure
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+src/
+├── assets/
+├── components/
+├── features/
+│   └── metronome/
+│       ├── hooks/
+│       ├── themes/
+│       ├── constants.ts
+│       ├── types.ts
+│       └── MetronomePage.tsx
+├── hooks/
+│   └── useWakeLock.ts
+└── App.tsx
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Installation
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+npm install
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## Development
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+npm run dev
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Production Build
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+npm run build
+
+## Future Features
+
+- Tap Tempo
+- BPM Presets
+- Polyrhythm Mode
+- Custom Accent Patterns
+- PWA Support
+- Offline Mode
+- Saved User Preferences
