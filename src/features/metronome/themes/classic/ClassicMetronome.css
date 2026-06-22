@@ -1,0 +1,177 @@
+.classic-metronome
+{
+	margin-top: 30px;
+}
+
+
+.classic-metronome button:disabled,
+.classic-metronome input:disabled
+{
+	cursor: not-allowed;
+	opacity: 0.6;
+}
+
+
+.classic-metronome__panel
+{
+	background: #F5F5F5;
+	border: 1px solid lightgray;
+	margin: 0 auto;
+	max-width: 920px;
+	padding: 10px 30px 30px;
+	text-align: center;
+}
+
+
+.classic-metronome__number
+{
+	color: #FA5E46;
+	font-size: 60px;
+	font-weight: 900;
+	margin-bottom: 0;
+}
+
+
+.classic-metronome__reference
+{
+	color: #232C32;
+	font-size: 20px;
+	font-weight: 600;
+	margin-top: -6px;
+}
+
+
+.classic-metronome__control-row
+{
+	align-items: center;
+	display: flex;
+	gap: 20px;
+	justify-content: center;
+	margin-top: 10px;
+}
+
+
+.classic-metronome__value-text
+{
+	color: #FA5E46;
+	font-size: 42px;
+	font-weight: 900;
+	margin-bottom: 0;
+}
+
+
+.classic-metronome__control-row input[type="range"]
+{
+	width: 40%;
+}
+
+
+.classic-metronome input[type="range"]
+{
+	-webkit-appearance: none;
+	appearance: none;
+	margin: 13px 0;
+	width: 40%;
+}
+
+
+.classic-metronome input[type="range"]:focus
+{
+	outline: none;
+}
+
+
+.classic-metronome input[type="range"]::-webkit-slider-runnable-track
+{
+	background: #928483;
+	border: 1px solid #562425;
+	border-radius: 6px;
+	box-shadow: 1px 1px 1px #000000, 0 0 1px #0d0d0d;
+	cursor: pointer;
+	height: 12px;
+}
+
+
+.classic-metronome input[type="range"]::-webkit-slider-thumb
+{
+	-webkit-appearance: none;
+	background: #6B1817;
+	border: 2px solid #000000;
+	border-radius: 2px;
+	box-shadow: 1px 1px 1px #050000, 0 0 1px #1F0000;
+	cursor: pointer;
+	height: 39px;
+	margin-top: -14px;
+	width: 19px;
+}
+
+
+.classic-metronome input[type="range"]::-moz-range-track
+{
+	background: #928483;
+	border: 1px solid #562425;
+	border-radius: 6px;
+	box-shadow: 1px 1px 1px #000000, 0 0 1px #0D0D0D;
+	cursor: pointer;
+	height: 12px;
+}
+
+
+.classic-metronome input[type="range"]::-moz-range-thumb
+{
+	background: #6B1817;
+	border: 2px solid #000000;
+	border-radius: 2px;
+	box-shadow: 1px 1px 1px #050000, 0 0 1px #1F0000;
+	cursor: pointer;
+	height: 39px;
+	width: 19px;
+}
+
+
+.classic-metronome__round-button,
+.classic-metronome__play-button
+{
+	align-items: center;
+	background: white;
+	border: 0;
+	border-radius: 50%;
+	box-shadow: 0 0 10px 0 lightgray;
+	color: #FA5E46;
+	cursor: pointer;
+	display: inline-flex;
+	justify-content: center;
+}
+
+
+.classic-metronome__round-button
+{
+	font-size: 38px;
+	height: 60px;
+	width: 60px;
+}
+
+
+.classic-metronome__play-button
+{
+	font-size: 38px;
+	height: 80px;
+	margin-top: 24px;
+	width: 80px;
+}
+
+
+.classic-metronome__stopwatch
+{
+	color: #232c32;
+	font-size: 22px;
+	font-weight: 700;
+	margin-top: 14px;
+}
+
+
+.classic-metronome__settings
+{
+	margin-top: 28px;
+}
+
